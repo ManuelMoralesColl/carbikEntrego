@@ -38,9 +38,9 @@ public class SecurityConfig {
         	    .requestMatchers("/api/auth/**").permitAll()
         	    .requestMatchers(HttpMethod.GET, "/api/archivos/**").permitAll()
         	    .requestMatchers(HttpMethod.POST, "/api/archivos/**").permitAll()
-        	    .requestMatchers(HttpMethod.GET, "/api/feed/**").permitAll()
-        	    .requestMatchers(HttpMethod.GET, "/api/seguimientos/**").permitAll()
-        	    .requestMatchers(HttpMethod.POST, "/api/seguimientos/**").permitAll()
+        	    .requestMatchers(HttpMethod.GET, "/api/feed/global/**").permitAll()
+        	    //.requestMatchers(HttpMethod.GET, "/api/seguimientos/**").permitAll()
+        	   // .requestMatchers(HttpMethod.POST, "/api/seguimientos/**").permitAll()
         	    .requestMatchers(HttpMethod.GET, "/api/secciones/**").permitAll()
         	    
         	    .requestMatchers(HttpMethod.PUT, "/api/usuarios/**").authenticated()
@@ -50,7 +50,10 @@ public class SecurityConfig {
         	    .requestMatchers(HttpMethod.GET, "/api/publicaciones/**").authenticated()
         	    .requestMatchers(HttpMethod.POST, "/api/vehiculos/**").authenticated()
         	    .requestMatchers(HttpMethod.GET, "/api/vehiculos/**").authenticated()
-        	    
+        	    .requestMatchers(HttpMethod.GET, "/api/seguimientos/**").authenticated()
+        	    .requestMatchers(HttpMethod.POST, "/api/seguimientos/**").authenticated()
+        	    .requestMatchers(HttpMethod.GET, "/api/feed/siguiendo/**").permitAll()
+
         	    //.requestMatchers(HttpMethod.GET, "/api/seguimientos/**").authenticated()
 
         	    
