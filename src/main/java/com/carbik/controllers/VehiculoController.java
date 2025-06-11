@@ -65,7 +65,7 @@ public class VehiculoController {
 
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Vehiculo> editarVehiculo(@PathVariable Long id, @RequestBody Vehiculo vehiculoEditado) {
+	public ResponseEntity<VehiculoDTO> editarVehiculo(@PathVariable Long id, @RequestBody Vehiculo vehiculoEditado) {
 	    Optional<Vehiculo> vehiculoOpt = vehiculoRepository.findById(id);
 	    if (!vehiculoOpt.isPresent()) {
 	        return ResponseEntity.notFound().build();
@@ -79,15 +79,15 @@ public class VehiculoController {
 	    vehiculo.setInfoAdicional(vehiculoEditado.getInfoAdicional());
 	    vehiculo.setPrecio(vehiculoEditado.getPrecio());
 	    vehiculo.setEnVenta(vehiculoEditado.getEnVenta());
-	    vehiculo.setDisponibilidadDeVenta(vehiculoEditado.getEnVenta()); // Asumimos que son lo mismo
-	    // Actualiza la sección si es necesario
+	    vehiculo.setDisponibilidadDeVenta(vehiculoEditado.getEnVenta());
 	    if(vehiculoEditado.getSeccion() != null) {
 	        vehiculo.setSeccion(vehiculoEditado.getSeccion());
 	    }
 	    
 	    Vehiculo actualizado = vehiculoRepository.save(vehiculo);
-	    return ResponseEntity.ok(actualizado);
+	    return ResponseEntity.ok(new VehiculoDTO(actualizado)); // Devuelve DTO
 	}
+
 
 	// Eliminar vehículo
 	@DeleteMapping("/{id}")
